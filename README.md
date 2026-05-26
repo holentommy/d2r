@@ -43,4 +43,8 @@ print(f"Total Heralds Spawned:   {t_heralds} (Rate: {(t_heralds/total_elites_tes
 print(f"Average Heralds Per Run: {t_heralds/TOTAL_RUNS:.2f}")
 ```
 
+Formula:
+<img width="1235" height="375" alt="image" src="https://github.com/user-attachments/assets/4537ff2d-c3d2-49a0-ac71-18cbb2a9c948" />
+<img width="663" height="113" alt="image" src="https://github.com/user-attachments/assets/deed2252-4864-411f-a276-975c8a6f4b06" />
+
 
