@@ -1,25 +1,25 @@
 function Get-HeraldSpawnChance {
     param (
-        [double]$x,  # Sone-gjennomføring i prosent (0.0 til 1.0)
-        [double]$a = 0.5,  # Asymptote (maks sjanse fra kurven)
-        [double]$k = 0.05, # Vertikalt skift (base sjanse)
-        [double]$m = 10.0, # Helning (hvor bratt sjansen øker)
-        [double]$x0 = 0.5  # Midtpunkt (når sjansen øker mest)
+        [double]$x,  # zone-completion in percent (0.0 til 1.0)
+        [double]$a = 0.5,  # zone_chance_asymptote
+        [double]$k = 0.05, # zone_chance_vertial_shift
+        [double]$m = 10.0, # zone_chance_slope
+        [double]$x0 = 0.5  # zone_chance_midpoint
     )
 
-    # Formelen fra bildet: y = (a / (1 + e^(-m * (x - x0)))) + k
+    # equation: y = (a / (1 + e^(-m * (x - x0)))) + k
     $exponent = -$m * ($x - $x0)
     $y = ($a / (1 + [Math]::Exp($exponent))) + $k
     
-    return [Math]::Min($y, 1.0) # Kan ikke overstige 100%
+    return [Math]::Min($y, 1.0)
 }
 
-# --- Simulering av en "Clear" ---
-Write-Host "--- Sjanse for Herald basert på Zone Completion ---" -ForegroundColor Cyan
-Write-Host "Prosent | Sjanse"
+# --- Simululation of a zone clear ---
+Write-Host "--- Chance of Herald based on zone completion ---" -ForegroundColor Cyan
+Write-Host "Completion | Chance"
 Write-Host "----------------"
 
-# Tester sjansen fra 0% til 100% gjennomføring
+# Testing chance from 0% to 100% clear
 for ($i = 0; $i -le 10; $i++) {
     $completion = $i * 0.1
     $chance = Get-HeraldSpawnChance -x $completion
